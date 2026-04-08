@@ -4,6 +4,7 @@
  */
 package ua.org.olden.jas12593backup;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -33,7 +34,7 @@ public class jBackup {
         this.prop = new Properties();
         this.jZabbix = new jZabbix(this.prop);
 
-        try (InputStream input = new FileInputStream("JAS12593Backup.properties")) {
+        try (InputStream input = findPropertiesStream()) {
             this.prop.load(input);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(jBackup.class.getName()).log(Level.SEVERE, null, ex);
@@ -291,6 +292,24 @@ public class jBackup {
      */
     public Properties getProp() {
         return this.prop;
+    }
+
+    private InputStream findPropertiesStream() throws FileNotFoundException {
+        final String filename = "JAS12593Backup.properties";
+        File f;
+
+        f = new File(filename);
+        if (f.isFile()) return new FileInputStream(f);
+
+        f = new File(System.getProperty("user.home"), ".config/jAS12593Backup/" + filename);
+        if (f.isFile()) return new FileInputStream(f);
+
+        f = new File("/etc/jAS12593Backup/" + filename);
+        if (f.isFile()) return new FileInputStream(f);
+
+        throw new FileNotFoundException(
+            filename + " not found in: ./, ~/.config/jAS12593Backup/, /etc/jAS12593Backup/"
+        );
     }
 
     private String cHost;
