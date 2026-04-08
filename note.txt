@@ -1,6 +1,0 @@
-Convert JSON to POJO Objects in Java Online
-* https://json2csharp.com/code-converters/json-to-pojo
-
-  https://stackoverflow.com/questions/15786129/converting-java-objects-to-json-with-jackson
-  https://mkyong.com/java/how-to-parse-json-with-gson/
-  https://hc.apache.org/httpcomponents-client-5.3.x/quickstart.html  
