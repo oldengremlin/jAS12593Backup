@@ -7,6 +7,7 @@ package ua.org.olden.jas12593backup;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.InetAddress;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URLConnection;
@@ -50,48 +51,18 @@ public class jBackupDevice_dslam_ies1000 extends aConfigBackup implements iConfi
                 .concat("/init");
 
         try {
-            // URLConnection urlConnection = new URL(ftpUrl).openConnection();
-            URLConnection urlConnection = URI.create(ftpUrl)
-                    .toURL().openConnection();
-            /*
-            URLConnection urlConnection = Paths.get(ftpUrl)
-                    .toUri()
-                    .toURL()
-                    .openConnection();
-             */
- /*
-            ByteArrayOutputStream result = new ByteArrayOutputStream();
-            byte[] buffer = new byte[DEFAULT_BUFFER_SIZE];
-            int length;
-            try (InputStream inputStream = urlConnection.getInputStream()) {
-                while ((length = inputStream.read(buffer)) != -1) {
-                    result.write(buffer, 0, length);
+            if (InetAddress.getByName(this.fqdn).isReachable(5000)) {
+                // URLConnection urlConnection = new URL(ftpUrl).openConnection();
+                URLConnection urlConnection = URI.create(ftpUrl)
+                        .toURL().openConnection();
+                try (Stream<String> lines = new BufferedReader(
+                        new InputStreamReader(
+                                urlConnection.getInputStream()))
+                        .lines()) {
+                    this.config = lines.collect(Collectors.joining("\n"));
                 }
-            }
-            this.config = result.toString();
-             */
-            /////////////////////////////////////
-            /*
-            StringBuilder result = new StringBuilder();
-            try (BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(
-                            urlConnection.getInputStream()
-                    )
-            )) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    result
-                            .append(line)
-                            .append("\n");
-                }
-            }
-            this.config = result.toString();
-             */
-            try (Stream<String> lines = new BufferedReader(
-                    new InputStreamReader(
-                            urlConnection.getInputStream()))
-                    .lines()) {
-                this.config = lines.collect(Collectors.joining("\n"));
+            } else {
+                System.err.println("Host " + this.fqdn + " is not reachable");
             }
         } catch (MalformedURLException ex) {
             Logger.getLogger(jBackupDevice_dslam_ies1000.class.getName()).log(Level.SEVERE, null, ex);

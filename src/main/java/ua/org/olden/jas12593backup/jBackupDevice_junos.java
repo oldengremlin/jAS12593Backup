@@ -64,9 +64,11 @@ public class jBackupDevice_junos extends aConfigBackup implements iConfigBackup 
                         this.session.disconnect();
                     }
                 }
+            } else {
+                System.err.println("Host " + this.fqdn + " is not reachable");
             }
         } catch (UnknownHostException ex) {
-            System.err.println("Host " + this.fqdn + "does not exists");
+            System.err.println("Host " + this.fqdn + " does not exist");
         } catch (IOException ex) {
             System.err.println("Error in reaching the Host " + this.fqdn);
         }

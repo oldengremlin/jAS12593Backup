@@ -40,6 +40,8 @@ public class jBackupDevice_dslam_7324 extends aConfigBackup implements iConfigBa
                 FTPConnect();
                 FTPGetConfig();
                 FTPDisconnect();
+            } else {
+                System.err.println("Host " + this.fqdn + " is not reachable");
             }
         } catch (IOException ex) {
             //Logger.getLogger(jBackupDevice_dslam_7324.class.getName()).log(Level.SEVERE, null, ex);
