@@ -1,0 +1,12 @@
+#!/bin/sh
+
+CDIR=$( pwd )
+cd "$(dirname "$(readlink -f "$0")")"
+
+scp target/jAS12593Backup-*.jar roffice:~olden/src/jBackup
+
+ssh -C -x roffice 'sudo cp -v ~olden/src/jBackup/jAS12593Backup-*.jar /safe/jBackup/'
+ssh -C -x roffice 'sudo cp -v ~olden/src/jBackup/JAS12593Backup.properties /safe/jBackup/'
+ssh -C -x roffice 'sudo chown -R root.root /safe/jBackup'
+
+cd "${CDIR}"
