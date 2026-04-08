@@ -36,7 +36,7 @@ public class jConfigBackup implements Callable<jConfigDevice> {
     }
 
     private void prepareClass() {
-        String className = "jas12593backup.jBackupDevice_" + getConfigDeviceEvent().getType();
+        String className = "ua.org.olden.jas12593backup.jBackupDevice_" + getConfigDeviceEvent().getType();
         String hostName = getConfigDeviceEvent().getHost();
         try {
             iConfigBackup icb = (iConfigBackup) Class.forName(className)
