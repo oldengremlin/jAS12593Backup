@@ -137,20 +137,31 @@ public class jBackup {
      */
     private void setCurrentInventoryType() {
         setType(new String());
-        if (getInventory().length() > 0) {
-            // setInventory(getInventory().replaceAll("[\\s|\\t|\\r\\n|\\r|\\n]+", " ").trim());
+        if (getInventory().length() > 0) { // setInventory(getInventory().replaceAll("[\\s|\\t|\\r\\n|\\r|\\n]+", " ").trim());
 /*
             if (getInventory().matches("^(D-Link\s+)?DES-3200-[0-9]+\s+.*") && getHost().equalsIgnoreCase("ssks-4")) {
-                System.err.println(getHost() + " v4");
-                setType("dlink_v4");
+            System.err.println(getHost() + " v4");
+            setType("dlink_v4");
             } else {
-                setType("dummy");
-                return;
+            setType("dummy");
+            return;
             }
-             */
-            boolean noop;
-            /*
-                https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html
+
+            https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html
+            Pattern.DOTALL or (?s) tells Java to allow the dot to match
+            newline characters, too.
+            Pattern.MULTILINE or (?m) tells Java to accept the anchors ^
+            and $ to match at the start and end of each line (otherwise they
+            only match at the start/end of the entire string).
+            Equivalent expressions:
+            Pattern.
+            compile("^Cisco\\s+(IOS|Internetwork Operating System).*", Pattern.DOTALL).
+            matcher(getInventory()).
+            find()
+            getInventory().
+            matches("(?s)^Cisco\\s+(IOS|Internetwork Operating System).*")
+
+            https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/regex/Pattern.html
             
                 Pattern.DOTALL or (?s) tells Java to allow the dot to match 
                     newline characters, too.
@@ -187,8 +198,6 @@ public class jBackup {
                 setType("dlink_dgs");
             } else if (getInventory().matches("^RouterOS\s+.*")) {
                 setType("mikrotik");
-//            } else if (getInventory().matches("^CSS.*SwOS\s+.*")) {
-//                setType("mikrotik_swos");
             } else if (getInventory().matches("^Juniper\s+.*([Ee][Xx]|[Mm][Xx])[0-9]+.*")) {
                 setType("junos");
             } else if (getInventory().matches("^.*\s+[Ee][Ss][0-9]+$")) {
