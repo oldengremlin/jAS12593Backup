@@ -4,6 +4,8 @@
  */
 package ua.org.olden.jas12593backup;
 
+import ua.org.olden.jas12593backup.Zabbix.jZabbixInventory;
+import ua.org.olden.jas12593backup.Zabbix.jZabbix;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
