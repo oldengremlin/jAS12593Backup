@@ -106,7 +106,12 @@ public class jBackupDevice_junos extends ConfigBackupAbstract implements ConfigB
         this.session.setPassword(
                 getConfigDeviceEvent().getPassword()
         );
-        this.session.connect();
+        try {
+            this.session.connect();
+        } catch (JSchException e) {
+            System.err.println("AUTH FAIL: " + getConfigDeviceEvent().getHost() + getDomain());
+            throw new JSchException("Auth fail", e);
+        }
 
     }
 
