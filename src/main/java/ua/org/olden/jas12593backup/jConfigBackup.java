@@ -42,9 +42,9 @@ public class jConfigBackup implements Callable<jConfigDevice> {
             ConfigBackupInterface icb = (ConfigBackupInterface) Class.forName(className)
                     .getDeclaredConstructor()
                     .newInstance();
-            /*
-            System.out.println(className + "\t" + hostName);
-             */
+
+            JAS12593Backup.LOGGER.debug(className + "\t" + hostName);
+
             getConfigDeviceEvent()
                     .setBody(
                             icb.prepare(
@@ -67,7 +67,7 @@ public class jConfigBackup implements Callable<jConfigDevice> {
                 | SecurityException
                 | IllegalArgumentException
                 | InvocationTargetException ex) {
-            System.err.println(className + " for host " + hostName + " not found");
+            JAS12593Backup.LOGGER.error(className + " for host " + hostName + " not found");
         }
     }
 

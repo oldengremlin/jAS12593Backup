@@ -58,7 +58,7 @@ public class jBackup {
                 if (waitPool(poolLocal, results, false)) {
                     results = new ArrayList<>();
                     poolLocal = Executors.newCachedThreadPool();
-                    System.out.println("== NEXT POOL ==============");
+                    JAS12593Backup.LOGGER.info("== NEXT POOL ==============");
                 }
                 setHost(host.host);
                 setInventory(host.inventory.hardware);
@@ -68,8 +68,7 @@ public class jBackup {
                             && getProp().getProperty(getHost().concat(".backup")).trim().equalsIgnoreCase("ignore")) {
                         continue;
                     }
-                    System.out.print(results.size() + ": ");
-                    System.out.println(getHost());
+                    JAS12593Backup.LOGGER.info(results.size() + ": " + getHost());
 
                     if (getProp().getProperty("queue.debug") != null
                             && getProp().getProperty("queue.debug", "off").trim().equalsIgnoreCase("on")
@@ -91,7 +90,7 @@ public class jBackup {
 
                 }
             }
-            System.out.println("-- finish -----------------");
+            JAS12593Backup.LOGGER.info("-- finish -----------------");
             waitPool(poolLocal, results, true);
 
         } catch (MalformedURLException ex) {
@@ -108,7 +107,7 @@ public class jBackup {
      */
     private boolean waitPool(ExecutorService p, ArrayList<Future<jConfigDevice>> r, boolean finish) throws InterruptedException, ExecutionException {
         if (finish || r.size() >= Integer.parseInt(getProp().getProperty("queue.max_size", "10").trim())) {
-            System.out.println("-- get pool ---------------");
+            JAS12593Backup.LOGGER.info("-- get pool ---------------");
             for (Future<jConfigDevice> result : r) {
                 try {
                     result.get(
@@ -120,9 +119,9 @@ public class jBackup {
             }
             p.shutdown();
             int lps = ((ThreadPoolExecutor) this.pool).getLargestPoolSize();
-            System.out.println("Largest Pool Size " + lps);
+            JAS12593Backup.LOGGER.info("Largest Pool Size " + lps);
             if (finish) {
-                System.out.println("== THE END ================");
+                JAS12593Backup.LOGGER.info("== THE END ================");
                 System.exit(0);
             }
             return true;
@@ -221,7 +220,7 @@ public class jBackup {
             } else if (getInventory().matches("(?s)^ZyXEL IES-1000.*")) {
                 setType("dslam_ies1000");
             } else {
-                System.err.println(getHost().concat(" :: ").concat(getInventory()));
+                JAS12593Backup.LOGGER.warn(getHost().concat(" :: ").concat(getInventory()));
             }
 
         }
