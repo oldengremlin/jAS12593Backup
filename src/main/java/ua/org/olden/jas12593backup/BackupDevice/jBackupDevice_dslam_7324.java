@@ -2,7 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ua.org.olden.jas12593backup;
+package ua.org.olden.jas12593backup.BackupDevice;
+
+import ua.org.olden.jas12593backup.ConfigBackupAbstract;
+import ua.org.olden.jas12593backup.ConfigBackupInterface;
+import ua.org.olden.jas12593backup.jConfigDevice;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;

@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ua.org.olden.jas12593backup;
+package ua.org.olden.jas12593backup.BackupDevice;
+
+import ua.org.olden.jas12593backup.ConfigBackupInterface;
 
 import java.io.IOException;
 
@@ -10,7 +12,18 @@ import java.io.IOException;
  *
  * @author olden
  */
-public class jBackupDevice_dlink_3526 extends jBackupDevice_dlink_v1 {
+public class jBackupDevice_dlink_dgs_1510_me extends jBackupDevice_ciscoios implements ConfigBackupInterface {
+
+    @Override
+    protected void login() throws IOException {
+        telnetReadUntil("ame:");
+        telnetWrite(getConfigDeviceEvent().getUsername());
+        telnetReadUntil("ord:");
+        telnetWrite(getConfigDeviceEvent().getPassword());
+        telnetReadUntil(getPrompt());
+        telnetWrite("disable clipaging");
+        telnetReadUntil(getPrompt());
+    }
 
     @Override
     protected String shRun() throws IOException {
