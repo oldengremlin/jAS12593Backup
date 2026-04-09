@@ -11,8 +11,7 @@ import ua.org.olden.jas12593backup.jConfigDevice;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import ua.org.olden.jas12593backup.JAS12593Backup;
 import org.apache.commons.net.ftp.FTPClient;
 
 /**
@@ -45,11 +44,10 @@ public class jBackupDevice_dslam_7324 extends ConfigBackupAbstract implements Co
                 FTPGetConfig();
                 FTPDisconnect();
             } else {
-                System.err.println("Host " + this.fqdn + " is not reachable");
+                JAS12593Backup.LOGGER.warn("Host {} is not reachable", this.fqdn);
             }
         } catch (IOException ex) {
-            //Logger.getLogger(jBackupDevice_dslam_7324.class.getName()).log(Level.SEVERE, null, ex);
-            Logger.getLogger(jBackupDevice_dslam_7324.class.getName()).log(Level.SEVERE, this.fqdn, ex);
+            JAS12593Backup.LOGGER.error("FTP error for host {}", this.fqdn, ex);
         } finally {
             return this.config;
         }

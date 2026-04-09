@@ -21,8 +21,6 @@ import java.util.concurrent.Future;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Клас, що реалізує головну гілку програми.
@@ -39,9 +37,9 @@ public class jBackup {
         try (InputStream input = findPropertiesStream()) {
             this.prop.load(input);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(jBackup.class.getName()).log(Level.SEVERE, null, ex);
+            JAS12593Backup.LOGGER.error("Properties file not found", ex);
         } catch (IOException ex) {
-            Logger.getLogger(jBackup.class.getName()).log(Level.SEVERE, null, ex);
+            JAS12593Backup.LOGGER.error("Failed to load properties", ex);
         }
     }
 
@@ -94,9 +92,9 @@ public class jBackup {
             waitPool(poolLocal, results, true);
 
         } catch (MalformedURLException ex) {
-            Logger.getLogger(jBackup.class.getName()).log(Level.SEVERE, null, ex);
+            JAS12593Backup.LOGGER.error("Malformed URL", ex);
         } catch (IOException | InterruptedException | ExecutionException ex) {
-            Logger.getLogger(jBackup.class.getName()).log(Level.SEVERE, null, ex);
+            JAS12593Backup.LOGGER.error("Runtime error", ex);
         }
     }
 

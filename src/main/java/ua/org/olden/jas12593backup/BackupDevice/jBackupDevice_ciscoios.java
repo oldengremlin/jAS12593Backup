@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.UnknownHostException;
+import ua.org.olden.jas12593backup.JAS12593Backup;
 import org.apache.commons.net.telnet.TelnetClient;
 
 /**
@@ -72,20 +73,16 @@ public class jBackupDevice_ciscoios extends ConfigBackupAbstract implements Conf
                 logout();
                 disconnect();
 
-                System.out.println(
-                        getConfigDeviceEvent().getType()
-                                .concat("\t")
-                                .concat(getConfigDeviceEvent().getHost())
-                );
+                JAS12593Backup.LOGGER.info("{}	{}", getConfigDeviceEvent().getType(), getConfigDeviceEvent().getHost());
 
             } else {
-                System.err.println("Host " + this.fqdn + " is not reachable");
+                JAS12593Backup.LOGGER.warn("Host {} is not reachable", this.fqdn);
             }
 
         } catch (UnknownHostException ex) {
-            System.err.println("Host " + this.fqdn + " does not exist");
+            JAS12593Backup.LOGGER.warn("Host {} does not exist", this.fqdn);
         } catch (IOException ex) {
-            System.err.println("Error in reaching the Host " + this.fqdn);
+            JAS12593Backup.LOGGER.error("Error reaching host {}", this.fqdn);
         }
 
         return this.config;
