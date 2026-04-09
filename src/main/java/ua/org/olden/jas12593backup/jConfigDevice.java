@@ -13,7 +13,7 @@ import java.util.Properties;
  *
  * @author olden
  */
-class jConfigDevice {
+public class jConfigDevice {
 
     public jConfigDevice() {
         setType();
