@@ -10,7 +10,7 @@ import java.io.IOException;
  *
  * @author olden
  */
-public class jBackupDevice_dlink_v1 extends jBackupDevice_ciscoios implements iConfigBackup {
+public class jBackupDevice_dlink_v1 extends jBackupDevice_ciscoios implements ConfigBackupInterface {
 
     @Override
     protected void login() throws IOException {

@@ -15,7 +15,7 @@ import org.apache.commons.net.ftp.FTPClient;
  *
  * @author olden
  */
-public class jBackupDevice_dslam_7324 extends aConfigBackup implements iConfigBackup {
+public class jBackupDevice_dslam_7324 extends ConfigBackupAbstract implements ConfigBackupInterface {
 
     public jBackupDevice_dslam_7324() {
         // https://medium.com/bliblidotcom-techblog/java-ftp-integration-using-apache-commons-net-5efb3d300829

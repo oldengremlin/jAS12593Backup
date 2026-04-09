@@ -41,21 +41,6 @@ public class jBackup {
         } catch (IOException ex) {
             Logger.getLogger(jBackup.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        /*
-        try {
-            FileOutputStream fos = new FileOutputStream("properties.xml");
-            FileInputStream fis = new FileInputStream("properties.xml");
-            prop.storeToXML(fos, "jBackup");
-            while (fis.available() > 0) {
-                System.out.print("" + (char) fis.read());
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(jBackup.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(jBackup.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         */
     }
 
     /**
@@ -299,16 +284,22 @@ public class jBackup {
         File f;
 
         f = new File(filename);
-        if (f.isFile()) return new FileInputStream(f);
+        if (f.isFile()) {
+            return new FileInputStream(f);
+        }
 
         f = new File(System.getProperty("user.home"), ".config/jAS12593Backup/" + filename);
-        if (f.isFile()) return new FileInputStream(f);
+        if (f.isFile()) {
+            return new FileInputStream(f);
+        }
 
         f = new File("/etc/jAS12593Backup/" + filename);
-        if (f.isFile()) return new FileInputStream(f);
+        if (f.isFile()) {
+            return new FileInputStream(f);
+        }
 
         throw new FileNotFoundException(
-            filename + " not found in: ./, ~/.config/jAS12593Backup/, /etc/jAS12593Backup/"
+                filename + " not found in: ./, ~/.config/jAS12593Backup/, /etc/jAS12593Backup/"
         );
     }
 

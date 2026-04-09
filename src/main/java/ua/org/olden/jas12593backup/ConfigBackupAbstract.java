@@ -12,7 +12,7 @@ package ua.org.olden.jas12593backup;
  *
  * @author olden
  */
-abstract public class aConfigBackup implements iConfigBackup {
+abstract public class ConfigBackupAbstract implements ConfigBackupInterface {
 
     /**
      * Отримуємо домен для імені пристрою. Наприклад, якщо прийстрій зветься

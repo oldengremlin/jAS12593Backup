@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  *
  * @author olden
  */
-public class jBackupDevice_mikrotik_old extends aConfigBackup implements iConfigBackup {
+public class jBackupDevice_mikrotik_old extends ConfigBackupAbstract implements ConfigBackupInterface {
 
     public jBackupDevice_mikrotik_old() {
         this.config_ssh = new java.util.Properties();

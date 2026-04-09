@@ -14,7 +14,7 @@ import org.apache.commons.net.telnet.TelnetClient;
  *
  * @author olden
  */
-public class jBackupDevice_at8000 extends jBackupDevice_ciscoios implements iConfigBackup {
+public class jBackupDevice_at8000 extends jBackupDevice_ciscoios implements ConfigBackupInterface {
 
     public jBackupDevice_at8000() {
         super();

@@ -8,6 +8,6 @@ package ua.org.olden.jas12593backup;
  *
  * @author olden
  */
-public class jBackupDevice_dlink_dgs extends jBackupDevice_ciscoios implements iConfigBackup {
+public class jBackupDevice_dlink_dgs extends jBackupDevice_ciscoios implements ConfigBackupInterface {
 
 }

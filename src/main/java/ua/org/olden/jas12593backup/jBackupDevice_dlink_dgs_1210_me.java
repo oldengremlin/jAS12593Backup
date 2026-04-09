@@ -10,7 +10,7 @@ import java.io.IOException;
  *
  * @author olden
  */
-public class jBackupDevice_dlink_dgs_1210_me extends jBackupDevice_dlink_v1 implements iConfigBackup {
+public class jBackupDevice_dlink_dgs_1210_me extends jBackupDevice_dlink_v1 implements ConfigBackupInterface {
     
     @Override
     protected String shRun() throws IOException {

@@ -14,7 +14,7 @@ import org.apache.commons.net.telnet.TelnetClient;
  *
  * @author olden
  */
-public class jBackupDevice_ciscoios extends aConfigBackup implements iConfigBackup {
+public class jBackupDevice_ciscoios extends ConfigBackupAbstract implements ConfigBackupInterface {
 
     public jBackupDevice_ciscoios() {
         this.telnet = new TelnetClient();

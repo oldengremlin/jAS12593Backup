@@ -20,7 +20,7 @@ import java.util.stream.Stream;
  *
  * @author olden
  */
-public class jBackupDevice_dslam_ies1000 extends aConfigBackup implements iConfigBackup {
+public class jBackupDevice_dslam_ies1000 extends ConfigBackupAbstract implements ConfigBackupInterface {
 
     public jBackupDevice_dslam_ies1000() {
         this.config = new String();

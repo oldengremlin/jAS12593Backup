@@ -8,7 +8,7 @@ package ua.org.olden.jas12593backup;
  *
  * @author olden
  */
-public interface iConfigBackup {
+public interface ConfigBackupInterface {
 
     /**
      * Основний метод, який викликається в черзі, для реалізації класа, щоб

@@ -14,7 +14,7 @@ import org.apache.commons.net.telnet.TelnetClient;
  *
  * @author olden
  */
-public class jBackupDevice_ciscoios_rcore extends jBackupDevice_ciscoios implements iConfigBackup {
+public class jBackupDevice_ciscoios_rcore extends jBackupDevice_ciscoios implements ConfigBackupInterface {
 
     @Override
     protected void login() throws IOException {

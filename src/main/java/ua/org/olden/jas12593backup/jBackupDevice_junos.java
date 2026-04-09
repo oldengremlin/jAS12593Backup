@@ -26,7 +26,7 @@ import org.apache.commons.net.telnet.TelnetClient;
  *
  * @author olden
  */
-public class jBackupDevice_junos extends aConfigBackup implements iConfigBackup {
+public class jBackupDevice_junos extends ConfigBackupAbstract implements ConfigBackupInterface {
 
     public jBackupDevice_junos() {
         this.config_ssh = new java.util.Properties();
