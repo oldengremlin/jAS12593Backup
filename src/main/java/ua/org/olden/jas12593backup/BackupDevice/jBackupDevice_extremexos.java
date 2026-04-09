@@ -6,8 +6,6 @@ package ua.org.olden.jas12593backup.BackupDevice;
 
 import java.io.IOException;
 import java.net.InetAddress;
-import java.util.ArrayList;
-import org.apache.commons.net.telnet.TelnetClient;
 
 /**
  *

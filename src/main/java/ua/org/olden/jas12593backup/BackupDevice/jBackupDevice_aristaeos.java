@@ -4,13 +4,6 @@
  */
 package ua.org.olden.jas12593backup.BackupDevice;
 
-import com.jcraft.jsch.JSchException;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author olden

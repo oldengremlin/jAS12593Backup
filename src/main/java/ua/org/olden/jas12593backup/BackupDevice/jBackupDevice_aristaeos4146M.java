@@ -5,10 +5,6 @@
 package ua.org.olden.jas12593backup.BackupDevice;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintStream;
-import java.net.UnknownHostException;
-import org.apache.commons.net.telnet.TelnetClient;
 
 /**
  *
