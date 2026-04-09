@@ -61,10 +61,10 @@ public class jBackupDevice_junos extends ConfigBackupAbstract implements ConfigB
                     System.err.println("ERROR WITH HOST " + getConfigDeviceEvent().getHost());
                     Logger.getLogger(jBackupDevice_junos.class.getName()).log(Level.SEVERE, null, ex);
                 } finally {
-                    if (this.channel.isConnected()) {
+                    if (this.channel != null && this.channel.isConnected()) {
                         this.channel.disconnect();
                     }
-                    if (this.session.isConnected()) {
+                    if (this.session != null && this.session.isConnected()) {
                         this.session.disconnect();
                     }
                 }
