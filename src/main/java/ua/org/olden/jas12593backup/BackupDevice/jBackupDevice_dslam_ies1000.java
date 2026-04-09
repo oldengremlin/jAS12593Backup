@@ -12,11 +12,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.InetAddress;
+import ua.org.olden.jas12593backup.JAS12593Backup;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URLConnection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -66,12 +65,12 @@ public class jBackupDevice_dslam_ies1000 extends ConfigBackupAbstract implements
                     this.config = lines.collect(Collectors.joining("\n"));
                 }
             } else {
-                System.err.println("Host " + this.fqdn + " is not reachable");
+                JAS12593Backup.LOGGER.warn("Host {} is not reachable", this.fqdn);
             }
         } catch (MalformedURLException ex) {
-            Logger.getLogger(jBackupDevice_dslam_ies1000.class.getName()).log(Level.SEVERE, null, ex);
+            JAS12593Backup.LOGGER.error("Malformed FTP URL for host {}", this.fqdn, ex);
         } catch (IOException ex) {
-            Logger.getLogger(jBackupDevice_dslam_ies1000.class.getName()).log(Level.SEVERE, null, ex);
+            JAS12593Backup.LOGGER.error("FTP error for host {}", this.fqdn, ex);
         }
         return this.config;
     }

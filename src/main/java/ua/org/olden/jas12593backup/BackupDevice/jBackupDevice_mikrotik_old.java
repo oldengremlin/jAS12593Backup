@@ -17,13 +17,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import ua.org.olden.jas12593backup.JAS12593Backup;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Properties;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -56,26 +55,21 @@ public class jBackupDevice_mikrotik_old extends ConfigBackupAbstract implements 
                     deviceLogin();
                     doGetConfigCommand("/export compact");
                 } catch (JSchException | IOException ex) {
-                    System.err.println("ERROR WITH HOST " + getConfigDeviceEvent().getHost());
-                    Logger.getLogger(jBackupDevice_junos.class.getName()).log(Level.SEVERE, null, ex);
+                    JAS12593Backup.LOGGER.error("ERROR WITH HOST " + getConfigDeviceEvent().getHost(), ex);
                 } finally {
                     this.channel.disconnect();
                     this.session.disconnect();
                 }
             } else {
-                System.err.println("Host " + this.fqdn + " is not reachable");
+                JAS12593Backup.LOGGER.warn("Host {} is not reachable", this.fqdn);
             }
         } catch (UnknownHostException ex) {
-            System.err.println("Host " + this.fqdn + " does not exist");
+            JAS12593Backup.LOGGER.warn("Host {} does not exist", this.fqdn);
         } catch (IOException ex) {
-            System.err.println("Error in reaching the Host " + this.fqdn);
+            JAS12593Backup.LOGGER.error("Error reaching host {}", this.fqdn);
         }
 
-        System.out.println(
-                getConfigDeviceEvent().getType()
-                        .concat("\t")
-                        .concat(getConfigDeviceEvent().getHost())
-        );
+        JAS12593Backup.LOGGER.info("{}	{}", getConfigDeviceEvent().getType(), getConfigDeviceEvent().getHost());
 
         StringBuilder sb = new StringBuilder();
         for (String s : this.config) {

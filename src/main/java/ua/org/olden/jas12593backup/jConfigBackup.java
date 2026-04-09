@@ -10,8 +10,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.Callable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Клас, який створює чергу з реалізації інтерфейсу iConfigBackup, що мають на
@@ -56,7 +54,7 @@ public class jConfigBackup implements Callable<jConfigDevice> {
                 try (BufferedWriter bw = makeBackupStructure()) {
                     bw.write(getConfigDeviceEvent().getBody());
                 } catch (IOException ex) {
-                    Logger.getLogger(jConfigBackup.class.getName()).log(Level.SEVERE, null, ex);
+                    JAS12593Backup.LOGGER.error("Failed to write backup file", ex);
                 }
             }
 
