@@ -203,7 +203,7 @@ public class jBackup {
                 setType("ciscoios_rcore");
             } else if (getInventory().matches("(?s)^Cisco\\s+(IOS|Internetwork Operating System).*")) {
                 setType("ciscoios");
-            } else if (getInventory().matches("^Arista\s+Networks\s+EOS\s+version 4\\.14\\.6M.*")) {
+            } else if (getInventory().matches("^Arista\s+Networks\s+EOS\s+version 4\\.14\\..*")) {
                 setType("aristaeos4146M");
             } else if (getInventory().matches("^Arista\s+Networks\s+EOS.*")) {
                 setType("aristaeos");
